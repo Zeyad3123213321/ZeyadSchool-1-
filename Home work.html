@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Grade Upload & View</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f4f4f4;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .card {
+      border: 2px solid gold;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .pdf-icon {
+      width: 64px;
+      height: 64px;
+    }
+
+    .title {
+      margin: 10px 0;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .submit-btn {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .submit-btn:hover {
+      background-color: #0056b3;
+    }
+
+    iframe {
+      width: 100%;
+      height: 500px;
+      margin-top: 30px;
+      display: none;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Upload Grade Files (PDF or ZIP)</h1>
+  <div class="grid-container"></div>
+  <iframe id="pdfViewer"></iframe>
+
+  <script>
+    const papers = [
+      "HTML 1",
+      "HTML 2",
+      "HTML 3",
+      "HTML 4",
+      "HTML 5",
+      "HTML 6",
+      "HTML 7",
+      "HTML 8"
+    ];
+
+    const container = document.querySelector('.grid-container');
+
+    papers.forEach((title, index) => {
+      const card = document.createElement('div');
+      card.className = 'card';
+
+      card.innerHTML = `
+        <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="PDF" class="pdf-icon">
+        <div class="title">${title}</div>
+        <input type="file" accept=".pdf,.zip" id="file${index}">
+        <br>
+        <button class="submit-btn" onclick="submitFile(${index})">Upload</button>
+      `;
+
+      container.appendChild(card);
+    });
+
+    async function submitFile(index) {
+      const fileInput = document.getElementById(`file${index}`);
+      const file = fileInput.files[0];
+      const fileName = file?.name || "";
+
+      if (!file) return alert("Please choose a file.");
+
+      const ext = fileName.split('.').pop().toLowerCase();
+      if (!['pdf', 'zip'].includes(ext)) return alert("Only PDF or ZIP files allowed!");
+
+      const reader = new FileReader();
+      reader.onload = async function () {
+        const base64Data = reader.result.split(',')[1];
+        const formData = new URLSearchParams();
+        formData.append("file", base64Data);
+        formData.append("fileName", file.name);
+        formData.append("mimeType", file.type);
+
+        try {
+          const response = await fetch("YOUR_WEB_APP_URL_HERE", {
+            method: "POST",
+            body: formData
+          });
+          const result = await response.text();
+          alert(`File uploaded successfully: ${file.name}\nServer response: ${result}`);
+
+          if (ext === 'pdf') {
+            const blob = new Blob([file], { type: file.type });
+            const url = URL.createObjectURL(blob);
+            const viewer = document.getElementById("pdfViewer");
+            viewer.src = url;
+            viewer.style.display = "block";
+          }
+
+        } catch (err) {
+          alert("Upload error: " + err);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  </script>
+
+</body>
+</html>

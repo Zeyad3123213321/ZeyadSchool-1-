@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Graphic Design</title>
+    <style>
+        /* CSS Styles */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --light-color: #ecf0f1;
+    --dark-color: #2c3e50;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: var(--light-color);
+    color: var(--dark-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header {
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--primary-color);
+    color: white;
+    margin-bottom: 2rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.card {
+      border: 2px solid gold;
+
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card img {
+    width: 100%;
+    height: 50%;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 1rem;
+}
+
+.card h3 {
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    margin-bottom: 20px;
+}
+
+.btn:hover {
+    background-color: #2980b9;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 1000;
+}
+
+.modal-content {
+    position: relative;
+    margin: 5% auto;
+    width: 80%;
+    max-width: 800px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--primary-color);
+}
+
+.theme-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    border-radius: 50%;
+    background-color: var(--secondary-color);
+    color: white;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.dark-mode {
+    background-color: var(--dark-color);
+    color: var(--light-color);
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+    }
+}
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Start To Watching Our Videos</h1>
+        <p>ICT Video Theoretically And Practical</p>
+    </header>
+
+    <div class="container">
+        <section class="course-section">
+            <h2>Practical</h2>
+            <div class="grid">
+                <!-- Video Cards -->
+                <div class="card" onclick="openModal('Video/Zeyad (1).mp4')">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTC5A5JP8BrDS1PhJYiu0xAffXbGQFG0O7eng&s" alt="HTML Basics">
+                    <div class="card-content">
+                        <h3>HTML 1</h3>
+                        <p>Hypertext Markup Language (HTML)</p>
+                        <a class="btn">Watch Now</a>
+                    </div>
+                </div>
+                
+                <div class="card" onclick="openModal('Video/Zeyad (1).mp4')">
+                    <img src="https://cdn.prod.website-files.com/60ef088dd8fef99352abb434/650d715703204e7241295dea_html%20codes%20list.webp" alt="HTML Forms">
+                    <div class="card-content">
+                        <h3>HTML 2</h3>
+                        <p>Hypertext Markup Language (HTML)</p>
+                        <a class="btn">Watch Now</a>
+                    </div>
+                </div>
+
+                <div class="card" onclick="openModal('Video/Zeyad (1).mp4')">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8p4GyRmxorVAmj9wREtgwuoMXHPw6DMKAooO9qxeajXzIaBHiTahXL8p-NAnLHFVaWDA&usqp=CAU" alt="HTML Forms">
+                    <div class="card-content">
+                        <h3>HTML 3</h3>
+                        <p>Hypertext Markup Language (HTML)</p>
+                        <a class="btn">Watch Now</a>
+                    </div>
+                </div>
+
+                <div class="card" onclick="openModal('Video/Zeyad (1).mp4')">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCs0r1wMJl_4IR8yFP2wyBtZntrwtxqipQDiLyolRD6Gl3Myjqjm8mgcZPZDo59wZtVg&usqp=CAU" alt="HTML Forms">
+                    <div class="card-content">
+                        <h3>HTML 4</h3>
+                        <p>Hypertext Markup Language (HTML)</p>
+                        <a class="btn">Watch Now</a>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="grid">
+                <!-- Video Cards -->
+                <div class="card" onclick="openModal('Video/Zeyad (1).mp4')">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPfGNxCYj6F543jNCeUxZiX88iPujx9AdG9YqrhtgpdXawX71r73OTFv6OmaDV5gCUamk&usqp=CAU" alt="HTML Basics">
+                    <div class="card-content">
+                        <h3>HTML 5</h3>
+                        <p>Hypertext Markup Language (HTML)</p>
+                        <a class="btn">Watch Now</a>
+                    </div>
+                </div>
+                
+                <div class="card" onclick="openModal('Video/Zeyad (1).mp4')">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfd_cjnhD3oX_jB8t77H60kbIGzUoWL9dQKmtR5DdFtfKQLePSMmjeoni7hl9fM1YdX3I&usqp=CAU" alt="HTML Forms">
+                    <div class="card-content">
+                        <h3>HTML 6</h3>
+                        <p>Hypertext Markup Language (HTML)</p>
+                        <a class="btn">Watch Now</a>
+                    </div>
+                </div>
+
+                <div class="card" onclick="openModal('Video/Zeyad (1).mp4')">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVFV_ihxipeZmqzxF_VUu2zkJUrxL7vgGidg&s" alt="HTML Forms">
+                    <div class="card-content">
+                        <h3>HTML 7</h3>
+                        <p>Hypertext Markup Language (HTML)</p>
+                        <a class="btn">Watch Now</a>
+                    </div>
+                </div>
+
+                <div class="card" onclick="openModal('Video/Zeyad (1).mp4')">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2tyyhan6bDA2ba6dLdBhGgtHRzlPo3rSpeg&s" alt="HTML Forms">
+                    <div class="card-content">
+                        <h3>HTML 8</h3>
+                        <p>Hypertext Markup Language (HTML)</p>
+                        <a class="btn">Watch Now</a>
+                    </div>
+                </div>
+                
+                <!-- Add 6 more cards here -->
+            </div>
+        </section>
+
+        <!-- Video Modal -->
+        <div id="videoModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+                <video id="modalVideo" controls width="100%">
+                    <source src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+    <!-- <a href="school.html"><center><a href="school.html" class="btn">Back To The Main Web</a></center></a> -->
+
+    <script>
+        // JavaScript Functions
+        function openModal(videoSrc) {
+            const modal = document.getElementById('videoModal');
+            const videoPlayer = document.getElementById('modalVideo');
+            videoPlayer.src = videoSrc;
+            modal.style.display = 'block';
+            videoPlayer.play();
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('videoModal');
+            const videoPlayer = document.getElementById('modalVideo');
+            modal.style.display = 'none';
+            videoPlayer.pause();
+            videoPlayer.currentTime = 0;
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('videoModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Dynamic content loading (example)
+        window.addEventListener('DOMContentLoaded', () => {
+            // You can add dynamic content loading here
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Download Files</title>
+  <link rel="stylesheet" href="file.css">
+</head>
+<style>
+  /* Global styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f4f8;
+  margin: 0;
+  padding: 20px;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  color: #1f4e79;
+  margin-bottom: 40px;
+  font-size: 2.2rem;
+}
+
+/* File container */
+.file-container {
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* File list */
+.file-list {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 30px;
+}
+
+.file-list h2 {
+  color: #2d6ca2;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+.file-list li {
+  border: 2px solid gold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 18px;
+  margin-bottom: 10px;
+  background-color: #e9f1fb;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.file-list li:hover {
+  background-color: #d6e7f8;
+}
+
+/* File name */
+.file-name {
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+/* Download button */
+.download-btn {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background-color 0.3s ease;
+}
+
+.download-btn:hover {
+  background-color: #155184;
+}
+
+/* PDF Viewer (hidden by default) */
+#pdfViewer {
+  display: none;
+  width: 100%;
+  height: 600px;
+  border: none;
+  margin-top: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.25);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .file-list li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .download-btn {
+    margin-top: 10px;
+    width: 100%;
+  }
+}
+</style>
+<body>
+
+  <h1>Download Your Files</h1>
+
+  <div class="file-container">
+    <ul class="file-list" id="fileList">
+  <h2>Practical</h2>
+      <!-- Example file entries -->
+      <li>
+        <span class="file-name">HTML 1</span>
+        <button class="download-btn" onclick="downloadFile('Files/HTML (1).zip', 'Nov 2020 Paper 2.zip')">Download</button>
+      </li>
+
+      
+      <li>
+        <span class="file-name">HTML 2</span>
+        <button class="download-btn" onclick="downloadFile('Files/HTML (2).zip', 'Science_Notes.pdf')">Download</button>
+      </li>
+
+
+      <li>
+        <span class="file-name">HTML 3</span>
+        <button class="download-btn" onclick="downloadFile('Files/HTML (3).zip', 'Class_Schedule.pdf')">Download</button>
+      </li>
+
+            <li>
+        <span class="file-name">HTML 4</span>
+        <button class="download-btn" onclick="downloadFile('Files/HTML (4).zip', 'Nov 2020 Paper 2.zip')">Download</button>
+      </li>
+
+      
+      <li>
+        <span class="file-name">HTML 5</span>
+        <button class="download-btn" onclick="downloadFile('Files/HTML (5).zip', 'Science_Notes.pdf')">Download</button>
+      </li>
+
+
+      <li>
+        <span class="file-name">HTML 6</span>
+        <button class="download-btn" onclick="downloadFile('Files/HTML (6).zip', 'Class_Schedule.pdf')">Download</button>
+      </li>
+
+            <li>
+        <span class="file-name">HTML 7</span>
+        <button class="download-btn" onclick="downloadFile('Files/HTML (7).zip', 'Nov 2020 Paper 2.zip')">Download</button>
+      </li>
+
+      
+      <li>
+        <span class="file-name">HTML 8</span>
+        <button class="download-btn" onclick="downloadFile('Files/HTML (8).zip', 'Science_Notes.pdf')">Download</button>
+      </li>
+    </ul>
+  </div>
+
+  <iframe id="pdfViewer"></iframe>
+
+  <script>
+    function downloadFile(filePath, fileName) {
+      const link = document.createElement("a");
+      link.href = filePath;
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    function viewPDF(filePath) {
+      const viewer = document.getElementById("pdfViewer");
+      viewer.src = filePath;
+      viewer.style.display = "block";
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
+  </script>
+
+</body>
+</html>
